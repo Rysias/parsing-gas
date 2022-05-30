@@ -21,6 +21,11 @@ rawdat <- read_csv("out/gas_distances.csv")
 colors <- c("#91CF60", "#FC8D59", "#800026")
 dat <- rawdat %>% 
   st_as_sf(coords=c("long", "lat"), crs=4326) %>% 
+  mutate(dist_cats = case_when(
+    distance < 500 ~ "Under 500m", 
+    between(distance, 500, 1000) ~ "Between 500m & 1000m", 
+    distance > 1000 ~ "Over 1000m"
+  )) %>% 
   mutate(dist_colors = case_when(
     distance < 500 ~ colors[1], 
     between(distance, 500, 1000) ~ colors[2], 
@@ -29,6 +34,17 @@ dat <- rawdat %>%
 
 
 dk_border <- raster::getData("GADM", country = "DNK", level = 0)
+```
+## Histogram
+```{r histogram}
+ggplot(dat, aes(x=distance, fill=dist_cats)) + 
+  geom_histogram(bins=100) + 
+  scale_x_log10() + 
+  theme_minimal() + 
+  scale_fill_manual(values=c(colors[2], colors[3], colors[1])) + 
+  labs(title = "Distance from Gas-heated Buildings to the Fjernvarme Network", subtitle = "Data Source: BBR", fill = NULL, x="Distance to Fjernvarme Network")
+
+
 ```
 
 
