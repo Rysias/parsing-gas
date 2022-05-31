@@ -53,6 +53,8 @@ if __name__ == "__main__":
     ].isin([8])
     uses_fjernvarme = small_df["varmeinstallation"] == 1
     small_df = small_df[uses_gas | uses_fjernvarme]
+    small_df["is_gas"] = uses_gas
+    small_df["is_fjernvarme"] = uses_fjernvarme
 
     logging.info("filtering to only have koordinatsystems")
     small_df.dropna(subset=["koordinat"], inplace=True)
