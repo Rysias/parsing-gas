@@ -42,7 +42,7 @@ if __name__ == "__main__":
     small_df = fulldf[choose_cols].reset_index(drop=True)
 
     logging.info("Writing file...")
-    small_df.to_feather("data/select_bbr2.feather")
+    small_df.to_csv("data/select_bbr2.csv")
     logging.info("All done!")
 
     # small_df.drop_duplicates(subset=["byg057Opvarmningsmiddel", 'byg404Koordinat', 'husnummer'], inplace=True)

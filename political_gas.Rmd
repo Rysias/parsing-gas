@@ -1,0 +1,64 @@
+---
+title: "Gas and Elections"
+author: "Jonathan Rystrøm"
+date: '2022-05-26'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The goal of this notebook is to figure out which parties people with gas are voting for. 
+
+```{r load libraries}
+pacman::p_load(tidyverse, sf)
+```
+
+## Load data
+```{r load data}
+load("data/polling.rda")
+fv2019raw <- read_csv2("data/ValgData.csv")
+```
+
+```{r}
+polling <- polling %>% 
+  mutate(valgsted_id = str_c(KommuneNum, AfstemKod, sep="0"))
+
+valgsted_geom <- polling %>% 
+  st_as_sf(coords=c("long", "lat"), crs=4326) %>% 
+  group_by(valgsted_id) %>% 
+  summarise(geometry = st_combine(geometry)) %>%
+  st_cast("POLYGON") %>% 
+  s2::s2_rebuild()
+
+rm
+plot(valgsted_geom$geometry)
+
+valgsted_geom %>% 
+  mutate(area = st_area(geometry))
+```
+### Getting webdata from WFS
+Following [This tutorial](https://inbo.github.io/tutorials/tutorials/spatial_wfs_services/)
+```{r}
+pacman::p_load(ows4R, tidyverse, sf, httr)
+```
+
+```{r}
+wfs_url <- "https://services.datafordeler.dk/DAGIM/DAGI_10MULTIGEOM_GMLSFP/1.0.0/WFS"
+url <- parse_url(wfs_url)
+url$query <- list(service = "WFS",
+                  #version = "2.0.0", # facultative
+                  request = "GetCapabilities",
+                  username = "JonathanHvitham3O7Q8",
+                  password = keyring::key_get("datafordeler")
+                  
+                  )
+request <- build_url(url)
+request
+
+
+
+```
+
+

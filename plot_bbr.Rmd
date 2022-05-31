@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-pacman::p_load(tidyverse, tmap, sf, ggmap)
+pacman::p_load(tidyverse, tmap, sf )
 ```
 
 ```{r}
@@ -35,6 +35,15 @@ dat <- rawdat %>%
 
 dk_border <- raster::getData("GADM", country = "DNK", level = 0)
 ```
+
+```{r}
+rawdat %>% 
+  summarise(pct_cheaper = mean(distance < 180), 
+            pct_expensive = 1 - pct_cheaper)
+```
+
+
+
 ## Histogram
 ```{r histogram}
 ggplot(dat, aes(x=distance, fill=dist_cats)) + 
