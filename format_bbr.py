@@ -40,9 +40,25 @@ if __name__ == "__main__":
     logging.info("Selecting subset of data...")
     choose_cols = [col for col in fulldf.columns if col in CLEAN_USEFUL]
     small_df = fulldf[choose_cols].reset_index(drop=True)
+    wrangle_bbr.clean_columns(small_df)
+
+    logging.info("filtering to only have fjernvarme and gas")
+    dtypes = {
+        "varmeinstallation": "int8",
+        "opvarmningsmiddel": "float",
+    }
+    small_df = small_df.astype(dtypes)
+    uses_gas = small_df["opvarmningsmiddel"].isin([2, 7]) | small_df[
+        "varmeinstallation"
+    ].isin([8])
+    uses_fjernvarme = small_df["varmeinstallation"] == 1
+    small_df = small_df[uses_gas | uses_fjernvarme]
+
+    logging.info("filtering to only have koordinatsystems")
+    small_df.dropna(subset=["koordinat"], inplace=True)
 
     logging.info("Writing file...")
-    small_df.to_csv("data/select_bbr2.csv")
+    small_df.to_csv("data/select_bbr2.csv", index=False)
     logging.info("All done!")
 
     # small_df.drop_duplicates(subset=["byg057Opvarmningsmiddel", 'byg404Koordinat', 'husnummer'], inplace=True)
