@@ -1,11 +1,15 @@
 pacman::p_load(tidyverse, fs, wesanderson)
 
+######################################
+# PLOT COMPARISON OF ROAD AND EUCLID #
+######################################
+
 kommunekode <- read_csv("kommunekode.csv")
 data_files <- fs::dir_ls(path="./out", glob="*_road_dist.csv")
 
 df <- map_dfr(data_files, read_csv)
 
-df %>% 
+comparison_plot <- df %>% 
   mutate(rowid = row_number()) %>% 
   select(rowid, kommunekode, euclid_distance=distance, road_distance=road_dist) %>% 
   left_join(kommunekode) %>% 
@@ -21,5 +25,29 @@ df %>%
        x = "Distance to District Heating (m)", legend = "Distance Metric", y=NULL) + 
   scale_fill_manual(name = "Distance Method", values=wesanderson::wes_palette(name="Darjeeling1"))
 
+comparison_plot
+ggsave("comparison.png", width=3000, height=1080, unit="px")
 
-df
+###########################
+# PLOT TOTAL DISTRIBUTION # 
+###########################
+fulldat <- read_csv("./data/gas_fjernvarme_xy.csv")
+plot_dat <- fulldat %>% 
+  mutate(
+    dist_cat = case_when(
+      distance < 500 ~ "<500m",
+      between(distance, 500, 1000) ~ "500m-1000m",
+      distance > 1000 ~ ">1000m"
+    )
+  )
+palette <- wes_palette("Darjeeling1", 5)
+log_palette <- c(palette[2], palette[1], palette[4])
+log_plot <- ggplot(plot_dat, aes(x=distance, fill=dist_cat)) +
+  geom_histogram(bins=100) + 
+  theme_minimal() + 
+  scale_x_log10() + 
+  scale_fill_manual(values=log_palette, name=NULL) + 
+  labs(title = "Distance to District Heating Network", x="Distance (m)", y="Count")
+log_plot
+ggsave("full_distribution.png",log_plot, width=3000, height=1080, unit="px")
+
