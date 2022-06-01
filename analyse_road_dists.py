@@ -39,7 +39,7 @@ def projected_kommune_graph(kommune_id: int):
     logging.info("loading graph for %s", kommune_name)
     G = ox.graph_from_place(kommune_name, network_type="walk")
     logging.info("done! projecting graph..")
-    projected_graph = ox.project_graph(G, to_crs ="epsg:25832")
+    projected_graph = ox.project_graph(G, to_crs="epsg:25832")
     logging.info("done!")
     return projected_graph
 
