@@ -42,13 +42,16 @@ def main() -> None:
     )
 
     logging.info("Finding distances...")
-    gas_distances, gas_indices = find_distances(fjernvarme_coords, gas_coords)
+    gas_distances, gas_indices = find_distances(gas_coords, fjernvarme_coords)
 
     # Finding fjernvarme coordinates
     close_fjern = fjernvarme_coords.loc[gas_indices.reshape(-1), :].reset_index()
 
     logging.info("save data...")
     # Saving as dataframe
+    assert (
+        close_fjern.shape[0] == gas_distances.shape[0] == gas_koords.shape[0]
+    ), f"Something rotten with the shape of this: {close_fjern.shape = }, {gas_distances.shape = }, {gas_koords.shape =}"
     output_df = pd.DataFrame(
         {
             "ID": gas_koords["husnummer"].reset_index(drop=True),
