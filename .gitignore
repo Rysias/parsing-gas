@@ -115,6 +115,9 @@ venv.bak/
 .Rhistory
 .Rapp.history
 
+# User profile
+.Rprofile
+
 # Session Data files
 .RData
 
