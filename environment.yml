@@ -1,0 +1,10 @@
+name: parsegas
+channels:
+  - defaults
+dependencies:
+  - utm
+  - osmnx
+  - pandas
+  - python=3.9
+  - lxml
+prefix: C:\Users\jhr\Anaconda3\envs\parsegas
