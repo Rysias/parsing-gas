@@ -4,6 +4,7 @@ data/*
 # Large output
 *.html
 *map_files/
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
