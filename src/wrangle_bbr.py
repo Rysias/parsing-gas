@@ -33,13 +33,7 @@ USEFUL_COLS = [
     "{http://data.gov.dk/schemas/bbr}byg404Koordinat",
     "{http://data.gov.dk/schemas/bbr}byg406Koordinatsystem",
     "{http://data.gov.dk/schemas/bbr}byg134KvalitetAfKoordinatsæt",
-    "{http://data.gov.dk/schemas/bbr}virkningFra",
-    "{http://data.gov.dk/schemas/bbr}registreringFra",
-    "{http://data.gov.dk/schemas/bbr}byg094Revisionsdato",
-    "{http://data.gov.dk/schemas/bbr}byg024AntalLejlighederMedKøkken",
-    "{http://data.gov.dk/schemas/bbr}byg025AntalLejlighederUdenKøkken",
     "{http://data.gov.dk/schemas/bbr}kommunekode",
-    "{http://data.gov.dk/schemas/bbr}ejerlejlighed",
 ]
 
 CLEAN_USEFUL = [strip_bbr_tag(col) for col in USEFUL_COLS]
