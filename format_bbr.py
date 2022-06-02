@@ -55,6 +55,8 @@ if __name__ == "__main__":
     small_df = small_df[uses_gas | uses_fjernvarme]
     small_df["is_gas"] = uses_gas
     small_df["is_fjernvarme"] = uses_fjernvarme
+    # remove columns that are not needed
+    small_df = small_df.drop(["varmeinstallation", "opvarmningsmiddel",], axis=1)
 
     logging.info("filtering to only have koordinatsystems")
     small_df.dropna(subset=["koordinat"], inplace=True)
