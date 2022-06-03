@@ -46,9 +46,9 @@ def projected_kommune_graph(kommune_id: int):
 
 def main(args: argparse.Namespace):
     KOMMUNE_ID = args.kommune_id
-
+    INPUT_PATH = Path(args.input_path)
     logging.info("loading data...")
-    df = pd.read_csv("data/gas_fjernvarme_xy.csv")
+    df = pd.read_csv(INPUT_PATH)
     kommune_df = df[df["kommunekode"] == KOMMUNE_ID]
     Gp = projected_kommune_graph(KOMMUNE_ID)
 
@@ -86,7 +86,10 @@ if __name__ == "__main__":
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
-        "--kommune_id", type=int, default=306, help="The kommune id to analyse."
+        "--kommune-id", type=int, default=306, help="The kommune id to analyse."
+    )
+    parser.add_argument(
+        "--input-path", type=str, default="output/gas_fjernvarme_xy.csv"
     )
     args = parser.parse_args()
     main(args)
