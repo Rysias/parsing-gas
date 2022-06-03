@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
 
-library(tidyverse, fs, wesanderson)
+library(tidyverse)
+library(fs)
+library(wesanderson)
 print("I'm in R!")
 ######################################
 # PLOT COMPARISON OF ROAD AND EUCLID #
