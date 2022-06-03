@@ -1,5 +1,7 @@
-pacman::p_load(tidyverse, fs, wesanderson)
+#!/usr/bin/env Rscript
 
+library(tidyverse, fs, wesanderson)
+print("I'm in R!")
 ######################################
 # PLOT COMPARISON OF ROAD AND EUCLID #
 ######################################
