@@ -29,6 +29,11 @@ def get_all_buildings(all_paths: List[Path]) -> pd.DataFrame:
     return pd.concat([clean_from_file(path) for path in all_paths])
 
 
+def df_to_zip(df: pd.DataFrame, filepath: Path) -> None:
+    compression_opts = dict(method="zip", archive_name=f"{filepath.stem}.csv")
+    df.to_csv(filepath, compression=compression_opts)
+
+
 if __name__ == "__main__":
     data_files = list(Path("data").glob("*v4.pkl"))
 
@@ -62,8 +67,7 @@ if __name__ == "__main__":
     small_df.dropna(subset=["koordinat"], inplace=True)
 
     logging.info("Writing file...")
-    small_df.to_csv("data/select_bbr2.csv", index=False)
+    outpath = Path("data/bbr_clean.zip")
+    df_to_zip(small_df, outpath)
     logging.info("All done!")
-
-    # small_df.drop_duplicates(subset=["byg057Opvarmningsmiddel", 'byg404Koordinat', 'husnummer'], inplace=True)
 
