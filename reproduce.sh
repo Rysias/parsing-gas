@@ -9,3 +9,5 @@ echo "# BENCHMARKING ROAD DISTS #"
 python analyse_road_dists.py --kommune-id 157
 # Aabenraa
 python analyse_road_dists.py --kommune-id 580 
+echo "# PLOTTING #"
+Rscript plot_dists.R
