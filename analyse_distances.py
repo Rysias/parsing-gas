@@ -1,4 +1,5 @@
-from typing import Tuple, Union
+from typing import Tuple
+import argparse
 import pandas as pd
 from sklearn.neighbors import KDTree
 from pathlib import Path
@@ -9,7 +10,6 @@ import src.geo_transform as gt
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
-DATA_DIR = Path("data")
 
 
 def find_distances(
@@ -23,9 +23,11 @@ def find_distances(
     return distances, indices
 
 
-def main() -> None:
+def main(args: argparse.Namespace) -> None:
+    INPUT_PATH = Path(args.input_path)
+    OUTPUT_DIR = Path(args.output_dir)
     logging.info("loading data..")
-    df = pd.read_csv(DATA_DIR / "select_bbr2.csv")
+    df = pd.read_csv(INPUT_PATH)
     df = df[~df["koordinat"].isin(["POINT(0 0)", "POINT(0 0.5)"])]
 
     logging.info("deduplicating..")
@@ -64,8 +66,22 @@ def main() -> None:
         }
     )
 
-    output_df.to_csv(DATA_DIR / "gas_fjernvarme_xy.csv", index=False)
+    output_df.to_csv(OUTPUT_DIR / "gas_fjernvarme_xy.csv", index=False)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Finds closest gas station to fjernvarme",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    parser.add_argument(
+        "--output-dir", type=str, default="output", help="Path to data directory"
+    )
+    parser.add_argument(
+        "--input-path",
+        type=str,
+        default="data/raw/bbr_clean.csv",
+        help="Path to data directory",
+    )
+    args = parser.parse_args()
+    main(args)

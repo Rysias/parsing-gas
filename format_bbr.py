@@ -3,6 +3,7 @@ import src.util as util
 import src.wrangle_bbr as wrangle_bbr
 import pandas as pd
 from pathlib import Path
+import argparse
 import logging
 
 from src.wrangle_bbr import CLEAN_USEFUL
@@ -34,7 +35,7 @@ def df_to_zip(df: pd.DataFrame, filepath: Path) -> None:
     df.to_csv(filepath, compression=compression_opts)
 
 
-if __name__ == "__main__":
+def main() -> None:
     data_files = list(Path("data").glob("*v4.pkl"))
 
     logging.info("Reading data from %s files", len(data_files))
@@ -71,3 +72,6 @@ if __name__ == "__main__":
     df_to_zip(small_df, outpath)
     logging.info("All done!")
 
+
+if __name__ == "__main__":
+    main()
