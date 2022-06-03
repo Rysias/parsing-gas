@@ -6,6 +6,7 @@ Script for processing the huge BBR xml file. Concretely, we want to extract:
 """
 from pathlib import Path
 import logging
+import argparse
 from typing import Optional, List, Dict
 import src.wrangle_bbr as wrangle_bbr
 import src.extract as extract
@@ -53,9 +54,10 @@ def extract_bygning_clean(
     util.write_pickle(building_list, Path(f"data/bygningslist_finalv4.pkl"))
 
 
-def main():
+def main(args):
+    INPUT_DIR = Path(args.data_dir)
     try:
-        ZIP_PATH, XML_NAME = util.get_zip_and_xml(Path("data"))
+        ZIP_PATH, XML_NAME = util.get_zip_and_xml(INPUT_DIR)
     except ValueError:
         logging.error("Could not find zip file")
         return
@@ -64,4 +66,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #add a description
+    parser = argparse.ArgumentParser(description="what the program does")
+
+    #add the arguments
+    parser.add_argument("--data-dir", help="path to were to find the input file", default="input")
+    args = parser.parse_args()
+    main(args)

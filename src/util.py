@@ -24,6 +24,8 @@ def get_zip_and_xml(dir: Path) -> Tuple[Path, str]:
 
 
 def write_pickle(data, path: Path):
+    if not path.parent.exists():
+        path.parent.mkdir()
     with open(path, "wb") as f:
         pickle.dump(data, f)
 

@@ -9,7 +9,7 @@ print("I'm in R!")
 ######################################
 
 kommunekode <- read_csv("kommunekode.csv")
-data_files <- fs::dir_ls(path="./out", glob="*_road_dist.csv")
+data_files <- fs::dir_ls(path="./output", glob="*_road_dist.csv")
 
 df <- map_dfr(data_files, read_csv)
 
@@ -35,7 +35,7 @@ ggsave("comparison.png", width=3000, height=1080, unit="px")
 ###########################
 # PLOT TOTAL DISTRIBUTION # 
 ###########################
-fulldat <- read_csv("./data/gas_fjernvarme_xy.csv")
+fulldat <- read_csv("./output/gas_fjernvarme_xy.csv")
 plot_dat <- fulldat %>% 
   mutate(
     dist_cat = case_when(
