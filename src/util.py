@@ -1,7 +1,13 @@
-from ctypes import Union
 import pickle
 from pathlib import Path
 from typing import Optional, Tuple
+
+
+def create_dir(path: str) -> Path:
+    new_dir = Path(path)
+    if not new_dir.exists():
+        new_dir.mkdir()
+    return new_dir
 
 
 def find_zip_file(path: Path) -> Optional[Path]:

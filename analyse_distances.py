@@ -6,6 +6,7 @@ from pathlib import Path
 import logging
 import numpy as np
 import src.geo_transform as gt
+import src.util as util
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -25,7 +26,7 @@ def find_distances(
 
 def main(args: argparse.Namespace) -> None:
     INPUT_PATH = Path(args.input_path)
-    OUTPUT_DIR = Path(args.output_dir)
+    OUTPUT_DIR = util.create_dir(args.output_dir)
     logging.info("loading data..")
     df = pd.read_csv(INPUT_PATH)
     df = df[~df["koordinat"].isin(["POINT(0 0)", "POINT(0 0.5)"])]
