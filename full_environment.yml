@@ -1,0 +1,17 @@
+name: parsegas2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - r-base
+  - osmnx
+  - ca-certificates
+  - openssl
+  - utm
+  - certifi
+  - lxml
+  - r-tidyverse
+  - r-leaflet
+  - r-sf
+  - r-wesanderson
+prefix: /opt/conda/envs/parsegas2
