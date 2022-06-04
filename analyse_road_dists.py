@@ -92,7 +92,7 @@ if __name__ == "__main__":
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
-        "--kommune-id", type=int, default=306, help="The kommune id to analyse."
+        "--kommune-id", type=int, required=True, help="The kommune id to analyse."
     )
     parser.add_argument(
         "--input-path", type=str, default="output/gas_fjernvarme_xy.csv"
