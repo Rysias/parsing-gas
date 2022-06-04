@@ -1,8 +1,8 @@
 name: parsegas2
 channels:
-  - conda-forge
+  - defaults
 dependencies:
-  - python=3.9
+  - python==3.9
   - r-base
   - osmnx
   - ca-certificates
@@ -14,4 +14,7 @@ dependencies:
   - r-leaflet
   - r-sf
   - r-wesanderson
-prefix: /opt/conda/envs/parsegas2
+  - r-languageserver
+  - pytest
+  - pytest-cov
+prefix: C:\Users\jhr\Anaconda3\envs\parsegas2
