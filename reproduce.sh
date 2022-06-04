@@ -11,3 +11,6 @@ python analyse_road_dists.py --kommune-id 157
 python analyse_road_dists.py --kommune-id 580 
 echo "# PLOTTING #"
 Rscript plot_dists.R
+echo "# LEAFLET MAP #"
+Rscript leaflet_map.R
+echo "# ALL DONE #"
