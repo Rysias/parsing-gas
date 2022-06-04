@@ -30,6 +30,8 @@ Below I explain how to reproduce the analyses and plots of my report.
 ### Setting up the Environment
 This project uses [mamba](https://mamba.readthedocs.io/en/latest/), a blazingly fast cross-platform package manager for data science. As described in their docs, it is most easy to install through either [miniconda](LINK) or [anaconda](LINK) so make sure to have one of these installed on your system! After that it is as easy as running the [`setup.sh`](./setup.sh) script in a bash terminal. 
 
+To see a complete list of the dependencies see the [`full_environment.yml`](./full_environment.yml)-file
+
 ### Tests
 Parts of the project are developed using a [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) framework using [pytest](https://docs.pytest.org/en/7.1.x/). The tests can be run using the following commands: 
 
@@ -61,8 +63,11 @@ All of the python scripts are documented using [argparse](https://docs.python.or
     - [ ] Test run (again)
 - [ ] Expand README
     - [x] Copy CDS template
-    - [ ] Create reproduce instructions
+    - [x] Create reproduce instructions
 - [ ] Clean repo
     - [x] Create plot folder
     - [ ] Remove dead files
     - [ ] Document scripts
+- [ ] Explain artifacts
+    - [ ] Explain scripts
+    - [ ] Explain datasets (generated and downloaded)
