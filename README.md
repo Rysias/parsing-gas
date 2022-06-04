@@ -4,16 +4,23 @@ Final Project for Spatial Analytics (Cultural Data Science at Aarhus University)
 
 ## Methods and Design
 ### Data
+
+Filename | Description | License | How to get| In Repository
+---- | --- | --- | --- | --- 
+FULL BBR | SOMETHING HERE | (link to licence) | LINK TO SOURCE | :x:
+`bbr_clean.csv`| Processed dataset | (link to licence) | [Instructions here](#downloading-the-data) | :x:
+``| Processed dataset | (link to licence) | [Instructions here](#downloading-the-data) | :x:
+
 # TODO
 
 ### Software Design
 This project also follows the SOLID-principles. The overaching goal is to make experimentation as easy as possible. Throughout these assignments I have discovered that the more I follow the principles contra corner-cutting, the happier I become in the end.  
 
-- **Single responsibility**: Each function and script does one thing well like [`src/augment.py`](src/augment.py) for augmenting data, and splitting each model into its own file. 
-- **Open-closed**: By providing abstract interfaces for the classifiers (in the sense that all iterations of convnets need the same inputs), it becomes easy to add other models. 
-- **Liskov substitution**: Not quite applicable as the design is more functional than object oriented.
-- **Interface segregation**: By using type hints, most functions are clear about what they expect. Also, the main functions are kept fairly clean with minimal inputs given the `src/` layout, to reduce dependencies
-- **Dependency Inversion**: Not explicitly used but most functions are easy to replace (i.e. having another vectorizer), which is because of the strong design of scikit-learn and spacy. 
+- **Single responsibility**: 
+- **Open-closed**: 
+- **Liskov substitution**: 
+- **Interface segregation**: 
+- **Dependency Inversion**: 
 
 ## Reproducing the results 
 TL;DR: An example of the entire setup and running the pipeline can be run using the bash-script `reproduce.sh`. 
@@ -22,6 +29,15 @@ Below I explain how to reproduce the analyses and plots of my report.
 
 ### Setting up the Environment
 This project uses [mamba](https://mamba.readthedocs.io/en/latest/), a blazingly fast cross-platform package manager for data science. As described in their docs, it is most easy to install through either [miniconda](LINK) or [anaconda](LINK) so make sure to have one of these installed on your system! After that it is as easy as running the [`setup.sh`](./setup.sh) script in a bash terminal. 
+
+### Tests
+Parts of the project are developed using a [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) framework using [pytest](https://docs.pytest.org/en/7.1.x/). The tests can be run using the following commands: 
+
+```{console}
+python -m pytest --cov-report term --cov ./src
+```
+
+This will print a coverage report to the terminal.  
 
 ### Downloading the data
 The formatted data is stored in a .csv-file in Google Drive. It can be downloaded manually by following [this link](https://drive.google.com/file/d/1bSWGPgW8K4S9BiWFasG32rhqevCG8OkM/view?usp=sharing), and unzipping the file to the `data/raw` directory. However, the recommended way is to run the `download_data.sh` as this does it all automagically.
