@@ -1,9 +1,12 @@
+"""
+Script for formatting the extracted pickled BBR data into a single csv file to be used for the analysis. 
+"""
+
 from typing import Dict, List
 import src.util as util
 import src.wrangle_bbr as wrangle_bbr
 import pandas as pd
 from pathlib import Path
-import argparse
 import logging
 
 from src.wrangle_bbr import CLEAN_USEFUL
@@ -14,25 +17,17 @@ logging.basicConfig(
 )
 
 
-def clean_building(building: List[Dict]) -> dict:
-    return {wrangle_bbr.strip_bbr_tag(k): v for d in building for k, v in d.items()}
-
-
-def clean_buildings(buildings: List[List[Dict]]) -> pd.DataFrame:
-    return pd.DataFrame([clean_building(building) for building in buildings])
-
-
-def clean_from_file(path: Path) -> pd.DataFrame:
-    return clean_buildings(util.read_pickle(path))
-
-
-def get_all_buildings(all_paths: List[Path]) -> pd.DataFrame:
-    return pd.concat([clean_from_file(path) for path in all_paths])
-
-
 def df_to_zip(df: pd.DataFrame, filepath: Path) -> None:
     compression_opts = dict(method="zip", archive_name=f"{filepath.stem}.csv")
     df.to_csv(filepath, compression=compression_opts)
+
+
+def select_subset(fulldf: pd.DataFrame) -> pd.DataFrame:
+    fulldf.columns = [wrangle_bbr.strip_bbr_tag(k) for k in fulldf.columns]
+    choose_cols = [col for col in fulldf.columns if col in CLEAN_USEFUL]
+    small_df = fulldf[choose_cols].reset_index(drop=True)
+    wrangle_bbr.clean_columns(small_df)
+    return small_df
 
 
 def main() -> None:
@@ -41,12 +36,9 @@ def main() -> None:
     logging.info("Reading data from %s files", len(data_files))
     fulldf = pd.concat(pd.DataFrame(util.read_pickle(path)) for path in data_files)
     logging.info("done!")
-    fulldf.columns = [wrangle_bbr.strip_bbr_tag(k) for k in fulldf.columns]
 
     logging.info("Selecting subset of data...")
-    choose_cols = [col for col in fulldf.columns if col in CLEAN_USEFUL]
-    small_df = fulldf[choose_cols].reset_index(drop=True)
-    wrangle_bbr.clean_columns(small_df)
+    small_df = select_subset(fulldf)
 
     logging.info("filtering to only have fjernvarme and gas")
     dtypes = {
