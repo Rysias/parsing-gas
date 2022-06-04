@@ -17,7 +17,7 @@ def camel_to_snake(col: Union[pd.Series, pd.Index]) -> pd.Series:
 
 
 def remove_bygning(cols: pd.Index) -> pd.Index:
-    return cols.str.replace("byg\d+", "", regex=True)
+    return cols.str.replace(r"byg\d+", "", regex=True)
 
 
 def clean_columns(df: pd.DataFrame) -> None:
