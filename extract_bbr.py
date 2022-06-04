@@ -7,7 +7,6 @@ Script for processing the huge BBR xml file. Concretely, we want to extract:
 from pathlib import Path
 import logging
 import argparse
-from typing import Optional, List, Dict
 import src.wrangle_bbr as wrangle_bbr
 import src.extract as extract
 import src.util as util
@@ -66,10 +65,12 @@ def main(args):
 
 
 if __name__ == "__main__":
-    #add a description
+    # add a description
     parser = argparse.ArgumentParser(description="what the program does")
 
-    #add the arguments
-    parser.add_argument("--data-dir", help="path to were to find the input file", default="input")
+    # add the arguments
+    parser.add_argument(
+        "--data-dir", help="path to were to find the input file", default="input"
+    )
     args = parser.parse_args()
     main(args)
