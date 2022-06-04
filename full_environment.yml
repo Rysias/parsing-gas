@@ -1,6 +1,6 @@
 name: parsegas2
 channels:
-  - defaults
+  - conda-forge
 dependencies:
   - python==3.9
   - r-base
@@ -17,4 +17,8 @@ dependencies:
   - r-languageserver
   - pytest
   - pytest-cov
-prefix: C:\Users\jhr\Anaconda3\envs\parsegas2
+  - gdown
+  - tqdm
+  - r-mapview
+  - r-terra[version='>=1.5.12']
+prefix: /opt/conda/envs/parsegas2

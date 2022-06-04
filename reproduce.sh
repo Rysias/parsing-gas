@@ -1,3 +1,5 @@
+echo "# SETTING UP ENVIRONMENT #"
+bash setup.sh
 eval "$(conda shell.bash hook)"
 conda activate parsegas2
 echo "# DOWNLOAD DATA #"
