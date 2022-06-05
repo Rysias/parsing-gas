@@ -51,14 +51,22 @@ Name | Component of Pipeline | Description | Part of `reproduce.sh`
 All of the python scripts are documented using [argparse](https://docs.python.org/3/library/argparse.html). This means that full documentation can be found using the `--help`-flag.
 
 ### Description of /src
-To maximize
+To improve coherence and make the code more [SOLID](https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) I have refactored much functionality into a `/src` directory. An overview can be seen below: 
+
+Name | Description | Part of tests 
+--- | --- | --- 
+[`extract.py`](src/extract.py) | For parsing the BBR data efficiently | :heavy_check_mark:
+[`wrangle_bbr.py`](src/wrangle_bbr.py) | Formats the BBR data to a readable format | :heavy_check_mark:
+[`geo_transform`](src/geo_transform.py) | Transforms the data into coordinates | :heavy_check_mark:
+[`util.py`](src/extract.py) | Simple helper functions for reading and writing files | :x:
+
 
 
 # TODO 
-- [ ] Finish reproducability
+- [x] Finish reproducability
     - [x] Refactor leaflet map creation
     - [x] Add leaflet map to script 
-    - [ ] Test run (again)
+    - [x] Test run (again)
 - [ ] Expand README
     - [x] Copy CDS template
     - [x] Create reproduce instructions
@@ -66,9 +74,10 @@ To maximize
     - [x] Create plot folder
     - [x] Remove dead files
     - [ ] Document scripts
-- [ ] Explain artifacts
-    - [ ] Explain scripts
+- [x] Explain artifacts
+    - [x] Explain scripts
     - [x] Explain datasets (generated and downloaded)
 - [ ] WRITE(!)
-    - [ ] Add Sources / references
+    - [x] Add Sources / references
+    - [ ] Incorporate Feedback
     - [ ] Format into niceness
