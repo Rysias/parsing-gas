@@ -4,6 +4,7 @@ output/*
 
 # Large output
 *.html
+*.pdf
 *map_files/
 *.zip
 
