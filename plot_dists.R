@@ -29,7 +29,6 @@ comparison_plot <- df %>%
        x = "Distance to District Heating (m)", legend = "Distance Metric", y=NULL) + 
   scale_fill_manual(name = "Distance Method", values=wesanderson::wes_palette(name="Darjeeling1"))
 
-comparison_plot
 ggsave("plots/comparison.png", width=3000, height=1080, unit="px")
 
 ###########################
