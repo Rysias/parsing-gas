@@ -35,15 +35,23 @@ This will print a coverage report to the terminal.
 The formatted data is stored in a .csv-file in Google Drive. It can be downloaded manually by following [this link](https://drive.google.com/file/d/1bSWGPgW8K4S9BiWFasG32rhqevCG8OkM/view?usp=sharing), and unzipping the file to the `data/raw` directory. However, the recommended way is to run the `download_data.sh` as this does it all automagically.
 
 ### Description of the Scripts
-Below is a high level overview of the different scripts in the repo:
+Below is a high level overview of the different scripts in the repo in relation to the analysis pipeline:
+
+![Analysis pipeline](plots/analysis-pipeline.png)
 
 Name | Component of Pipeline | Description | Part of `reproduce.sh` 
 ---- | :----: | :---: | ---:
-[`nameofscript.py`](LINK)| Extraction | SOMETHING HERE | :heavy_check_mark:
-[`nameofscript.py`](LINK)| Extraction | SOMETHING HERE | :heavy_check_mark:
-[`nameofscript.py`](LINK)| Extraction | SOMETHING HERE | :heavy_check_mark:
+[`extract_bbr.py`](/extract_bbr.py)| 1. Extract BBR | Parses building information from the full BBR xml | :x:
+[`format_bbr.py`](/format_bbr.py)| 2. Format to CSV | Extracts relevant columns to a .CSV | :x:
+[`analyse_distances.py`](LINK)| 3. Find Nearest District Heating | Does Euclidean distance calculations | :heavy_check_mark:
+[`analyse_road_dists.py`](./analyse_road_dists.py)| 4. Compare Road Distances | Compares Euclidean Distances for Aabenraa and Gentofte respectively | :heavy_check_mark:
+[`plot_dists.R`](/plot_dists.R)| 5.1 Plot Distributions| Plots distribution of distances (found [here](./plots/))| :heavy_check_mark:
+[`leaflet_map.R`](/leaflet_map.R)| 5.2 Create Map | Creates an interactive map of gas-heated buildings and their distance | :heavy_check_mark:
 
-All of the python scripts are documented using [argparse](https://docs.python.org/3/library/argparse.html). This means that full documentation can be found using the `--help`-flag. Below are the results output for the respective scripts. The R scripts take no arguments. 
+All of the python scripts are documented using [argparse](https://docs.python.org/3/library/argparse.html). This means that full documentation can be found using the `--help`-flag.
+
+### Description of /src
+To maximize
 
 
 # TODO 
