@@ -30,7 +30,7 @@ comparison_plot <- df %>%
   scale_fill_manual(name = "Distance Method", values=wesanderson::wes_palette(name="Darjeeling1"))
 
 comparison_plot
-ggsave("comparison.png", width=3000, height=1080, unit="px")
+ggsave("plots/comparison.png", width=3000, height=1080, unit="px")
 
 ###########################
 # PLOT TOTAL DISTRIBUTION # 
@@ -43,15 +43,22 @@ plot_dat <- fulldat %>%
       between(distance, 500, 1000) ~ "500m-1000m",
       distance > 1000 ~ ">1000m"
     )
-  )
+  ) %>% 
+  mutate(dist_cat = factor(dist_cat, levels = c("<500m", "500m-1000m", ">1000m")))
+
+# Summarise results
+sum_dat <- plot_dat %>% 
+  group_by(dist_cat) %>% 
+  count() 
+print(sum_dat)
+
 palette <- wes_palette("Darjeeling1", 5)
-log_palette <- c(palette[2], palette[1], palette[4])
+log_palette <- c(palette[2], palette[4], palette[1])
 log_plot <- ggplot(plot_dat, aes(x=distance, fill=dist_cat)) +
   geom_histogram(bins=100) + 
   theme_minimal() + 
   scale_x_log10() + 
   scale_fill_manual(values=log_palette, name=NULL) + 
   labs(title = "Distance to District Heating Network", x="Distance (m)", y="Count")
-log_plot
-ggsave("full_distribution.png",log_plot, width=3000, height=1080, unit="px")
+ggsave("plots/full_distribution.png",log_plot, width=3000, height=1080, unit="px")
 
