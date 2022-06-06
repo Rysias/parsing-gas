@@ -18,6 +18,4 @@ dependencies:
   - pytest-cov
   - gdown
   - tqdm
-  - r-mapview
-  - r-terra[version='>=1.5.12']
 prefix: /opt/conda/envs/parsegas2
