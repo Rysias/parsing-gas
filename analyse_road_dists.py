@@ -8,6 +8,7 @@ import argparse
 from pathlib import Path
 import logging
 from tqdm import tqdm
+import src.util as util
 
 ox.settings.log_console = True
 ox.settings.use_cache = True
@@ -17,6 +18,7 @@ logging.basicConfig(
 )
 
 KOMMUNEKODE = Path("data/meta/kommunekode.csv")
+OUTPUT_DIR = util.create_dir("output")
 
 
 def csv_to_dict(csv_file: Path) -> dict:
@@ -83,11 +85,11 @@ def main(args: argparse.Namespace):
 
     logging.info("Writing results to file...")
     kommune_df = kommune_df.assign(road_dist=lengths)
-    kommune_df.to_csv(f"out/{KOMMUNE_ID}_road_dist.csv", index=False)
+    kommune_df.to_csv(OUTPUT_DIR / f"{KOMMUNE_ID}_road_dist.csv", index=False)
 
     logging.info("Saving graph to plots/...")
     ox.plot.plot_graph(
-        Gp, show=False, save=True, filename=f"plots/{KOMMUNE_ID}_graph.png"
+        Gp, show=False, save=True, filepath=f"plots/{KOMMUNE_ID}_graph.png"
     )
 
 
@@ -104,3 +106,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     main(args)
+
