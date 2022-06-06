@@ -1,3 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+[![R Version 4.1](https://img.shields.io/badge/R-4.1-blue)](https://cran.r-project.org/bin/windows/base/old/4.1.2/NEWS.R-4.1.2.html) 
+[![Python Version](https://img.shields.io/badge/Python->=3.9-green)](https://docs.python.org/3/) 
+
 # parsing-gas
 This repository contains and data for the project ["Parsing Gas: a Scalable Pipeline for Nearest Neighbour Calculations on Spatial Data"](https://docs.google.com/document/d/1QARkB9bbmuBmNGZnxdJk5fv-x4OBOQfLu0BlF04vgGE/edit?usp=sharing). The overarching goal of the project is to answer the following question: *What ist the distribution of distances from gas-heated buildings to the district-heating network in Denmark?*. 
 
