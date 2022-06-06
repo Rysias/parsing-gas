@@ -16,7 +16,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
-KOMMUNEKODE = Path("kommunekode.csv")
+KOMMUNEKODE = Path("data/meta/kommunekode.csv")
 
 
 def csv_to_dict(csv_file: Path) -> dict:

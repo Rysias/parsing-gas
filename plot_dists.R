@@ -8,7 +8,7 @@ print("I'm in R!")
 # PLOT COMPARISON OF ROAD AND EUCLID #
 ######################################
 
-kommunekode <- read_csv("kommunekode.csv")
+kommunekode <- read_csv("data/meta/kommunekode.csv")
 data_files <- fs::dir_ls(path="./output", glob="*_road_dist.csv")
 
 df <- map_dfr(data_files, read_csv)
