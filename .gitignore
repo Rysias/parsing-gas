@@ -2,6 +2,9 @@
 data/*
 output/*
 
+# Exclude meta files
+!data/meta/*
+
 # Large output
 *.html
 *.pdf
