@@ -3,7 +3,7 @@ data/*
 output/*
 
 # Exclude meta files
-!data/meta/*
+!data/meta/
 
 # Large output
 *.html
