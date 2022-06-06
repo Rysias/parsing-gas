@@ -113,5 +113,5 @@ gasmap <- leaflet() %>%
 
 # gasmap # Uncomment to test
 
-mapview::mapshot(gasmap, "gasmap.html")
+htmlwidgets::saveWidget(gasmap, "gasmap.html")
 
