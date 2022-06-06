@@ -81,9 +81,14 @@ def main(args: argparse.Namespace):
     fjern_nodes = nearest_nodes(Gp, kommune_df, "fjernvarme")
     lengths = calculate_road_dists(Gp, source_nodes=gas_nodes, target_nodes=fjern_nodes)
 
-    logging.info("All done! Writing results to file...")
+    logging.info("Writing results to file...")
     kommune_df = kommune_df.assign(road_dist=lengths)
     kommune_df.to_csv(f"out/{KOMMUNE_ID}_road_dist.csv", index=False)
+
+    logging.info("Saving graph to plots/...")
+    ox.plot.plot_graph(
+        Gp, show=False, save=True, filename=f"plots/{KOMMUNE_ID}_graph.png"
+    )
 
 
 if __name__ == "__main__":
