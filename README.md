@@ -24,7 +24,11 @@ Below I explain how to reproduce the analyses and plots of my report.
 ### Setting up the Environment
 This project uses [mamba](https://mamba.readthedocs.io/en/latest/), a blazingly fast cross-platform package manager for data science. As described in their docs, it is most easy to install through either [miniconda](LINK) or [anaconda](LINK) so make sure to have one of these installed on your system! After that it is as easy as running the [`setup.sh`](./setup.sh) script in a bash terminal. 
 
-To see a complete list of the dependencies see the [`full_environment.yml`](./full_environment.yml)-file
+The dependencies of this project are in two yml-files. [`full_environment.yml`](/full_environment.yml) has the minimal dependencies and is the file used by [`setup.sh`](/setup.sh). [`frozen_env.yml`](/frozen_env.yml) has the complete 'frozen' environment exactly as was used on my machine. If there are any problems with the setup script it might be a good idea to install directly from the frozen environment with the following command: 
+
+```console
+mamba env create -f frozen_env.yml
+```
 
 ### Tests
 Parts of the project are developed using a [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) framework using [pytest](https://docs.pytest.org/en/7.1.x/). The tests can be run using the following commands: 
