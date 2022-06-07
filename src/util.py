@@ -1,4 +1,5 @@
 import pickle
+import logging
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -17,7 +18,7 @@ def find_zip_file(path: Path) -> Optional[Path]:
 def get_zip_and_xml(dir: Path) -> Tuple[Path, str]:
     zip_path = find_zip_file(dir)
     if zip_path is None:
-        print("Could not find zip file")
+        logging.warning("Could not find zip file")
         return Path(""), ""
     xml_str = f"{zip_path.stem}.xml"
     return zip_path, xml_str

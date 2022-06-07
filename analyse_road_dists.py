@@ -1,3 +1,6 @@
+"""
+Analyse the road idstances in a municipality
+"""
 from typing import List
 import pandas as pd
 import numpy as np
@@ -95,7 +98,7 @@ def main(args: argparse.Namespace):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Analyse road distances in a kommune.",
+        description="Analyse road distances in a municipality (kommune).",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(

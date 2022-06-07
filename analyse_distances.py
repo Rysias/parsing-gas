@@ -1,3 +1,6 @@
+"""
+Script for analysing Euclidean distances between gas-heated buildings and district-heated buildings. Requires a pre-processed csv.
+"""
 from typing import Tuple
 import argparse
 import pandas as pd
