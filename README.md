@@ -68,24 +68,3 @@ Name | Description | Part of tests
 [`geo_transform`](src/geo_transform.py) | Transforms the data into coordinates | :heavy_check_mark:
 [`util.py`](src/extract.py) | Simple helper functions for reading and writing files | :x:
 
-
-
-# TODO 
-- [x] Finish reproducability
-    - [x] Refactor leaflet map creation
-    - [x] Add leaflet map to script 
-    - [x] Test run (again)
-- [ ] Expand README
-    - [x] Copy CDS template
-    - [x] Create reproduce instructions
-- [ ] Clean repo
-    - [x] Create plot folder
-    - [x] Remove dead files
-    - [ ] Document scripts
-- [x] Explain artifacts
-    - [x] Explain scripts
-    - [x] Explain datasets (generated and downloaded)
-- [ ] WRITE(!)
-    - [x] Add Sources / references
-    - [ ] Incorporate Feedback
-    - [ ] Format into niceness
